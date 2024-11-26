@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15pt"
+        android:layout_marginLeft="60pt"
+        android:text="Story Board" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5pt">
+
+        <Button
+            android:id="@+id/find_button"
+            android:layout_width="50pt"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5pt"
+            android:text="Find"
+            android:textSize="10pt" />
+
+        <EditText
+            android:id="@+id/find_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Include Sketches"
+            android:layout_gravity="center"
+            android:textSize="10pt"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="100pt"
+        android:layout_margin="8pt"
+        android:choiceMode="multipleChoice"/>
+
+    <TextView
+        android:id="@+id/tags_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You Selected:"
+        android:layout_marginLeft="5pt"
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/story"
+        android:layout_width="match_parent"
+        android:layout_height="160pt"
+        android:layout_margin="8pt"
+        android:textSize="8pt"
+        android:background="@drawable/black_border"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25pt"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/story_button"
+            android:layout_width="225dp"
+            android:layout_height="match_parent"
+            android:text="Story"
+            android:textSize="10pt"/>
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="225dp"
+            android:layout_height="match_parent"
+            android:text="Back"
+            android:textSize="10pt"/>
+
+    </LinearLayout>
+
+</LinearLayout>
