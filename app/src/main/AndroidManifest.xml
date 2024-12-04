@@ -25,6 +25,7 @@
         <activity android:name=".SketchActivity"/>
         <activity android:name=".CameraActivity"/>
         <activity android:name=".StoryActivity"/>
+        <service android:name=".BackgroundMusicService"/>
     </application>
 
 </manifest>

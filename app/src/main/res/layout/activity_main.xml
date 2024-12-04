@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/main"
+    android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
     <Button
@@ -14,6 +15,8 @@
         android:layout_gravity="center"
         android:text="Photo Tagger"
         android:textSize="10pt"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
         android:id="@+id/photo_tagger"
         />
 
@@ -24,6 +27,8 @@
         android:layout_gravity="center"
         android:text="Sketch Tagger"
         android:textSize="10pt"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
         android:id="@+id/sketch_tagger"
         />
 
@@ -34,6 +39,8 @@
         android:layout_gravity="center"
         android:text="Story Teller"
         android:textSize="10pt"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
         android:id="@+id/story_teller"
         />
 </LinearLayout>

@@ -5,17 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/main"
+    android:background="@drawable/gradient"
     tools:context=".SketchActivity">
 
     <Button
-        android:layout_width="50pt"
-        android:layout_height="15pt"
+        android:layout_width="wrap_content"
+        android:layout_height="18pt"
         android:text="Back"
         android:textSize="6pt"
         tools:ignore="TextSizeCheck"
+        android:background="@drawable/custom_button"
+        android:layout_margin="1pt"
+        android:textColor="@color/white"
         android:id="@+id/back"/>
 
-    <com.example.assignment5.MyDrawingArea
+    <com.example.COMP433_Project.MyDrawingArea
         android:id="@+id/DrawingArea"
         android:layout_width="160pt"
         android:layout_height="241dp"
@@ -23,19 +27,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30pt">
+        android:layout_height="38pt">
 
         <Button
             android:id="@+id/tag_button"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Tags"
-            android:textSize="15pt" />
+            android:background="@drawable/custom_button"
+            android:layout_margin="5pt"
+            android:textColor="@color/white"
+            android:textSize="13pt" />
 
         <TextView
             android:id="@+id/Tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="8pt" />
 
 
@@ -43,23 +51,32 @@
 
 
     <LinearLayout
+        android:weightSum="100"
         android:layout_width="match_parent"
         android:layout_height="35pt">
 
         <Button
+            android:layout_weight="50"
             android:id="@+id/clear_button"
-            android:layout_width="205dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Clear"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5pt"
+            android:textColor="@color/white"
             android:textSize="15pt" />
 
         <Button
+            android:layout_weight="50"
             android:id="@+id/save_button"
-            android:layout_width="202dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Save"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5pt"
+            android:textColor="@color/white"
             android:textSize="15pt" />
 
     </LinearLayout>
@@ -70,18 +87,22 @@
 
         <Button
             android:id="@+id/find_button"
-            android:layout_width="205dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Find"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5pt"
+            android:textColor="@color/white"
             android:textSize="15pt" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20pt"
+            android:textSize="15pt"
             tools:ignore="SpeakableTextPresentCheck"
             android:id="@+id/FindEdit"
+            android:hint="type one tag"
             />
 
     </LinearLayout>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical">
 
     <TextView
@@ -10,11 +11,12 @@
         android:layout_height="wrap_content"
         android:textSize="15pt"
         android:layout_marginLeft="60pt"
+        android:textColor="@color/black"
         android:text="Story Board" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25pt"
         android:layout_margin="5pt">
 
         <Button
@@ -23,12 +25,16 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5pt"
             android:text="Find"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"
             android:textSize="10pt" />
 
         <EditText
             android:id="@+id/find_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="type two tags"
+            android:textSize="10pt"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -48,6 +54,7 @@
             android:layout_height="wrap_content"
             android:text="Include Sketches"
             android:layout_gravity="center"
+            android:textColor="@color/black"
             android:textSize="10pt"/>
     </LinearLayout>
 
@@ -64,6 +71,7 @@
         android:layout_height="wrap_content"
         android:text="You Selected:"
         android:layout_marginLeft="5pt"
+        android:textColor="@color/black"
         android:textSize="8pt" />
 
     <TextView
@@ -72,26 +80,36 @@
         android:layout_height="160pt"
         android:layout_margin="8pt"
         android:textSize="8pt"
+        android:textColor="@color/black"
         android:background="@drawable/black_border"/>
 
     <LinearLayout
+        android:weightSum="100"
         android:layout_width="match_parent"
         android:layout_height="25pt"
         android:orientation="horizontal"
         android:layout_gravity="center">
 
         <Button
+            android:layout_weight="50"
             android:id="@+id/story_button"
-            android:layout_width="225dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Story"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"
+            android:layout_margin="5pt"
             android:textSize="10pt"/>
 
         <Button
+            android:layout_weight="50"
             android:id="@+id/back_button"
-            android:layout_width="225dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Back"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"
+            android:layout_margin="5pt"
             android:textSize="10pt"/>
 
     </LinearLayout>

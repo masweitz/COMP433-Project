@@ -1,4 +1,4 @@
-package com.example.assignment5;
+package com.example.COMP433_Project;
 
 import android.content.Context;
 

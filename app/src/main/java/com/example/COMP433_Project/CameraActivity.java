@@ -1,4 +1,4 @@
-package com.example.assignment5;
+package com.example.COMP433_Project;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class CameraActivity extends AppCompatActivity {
     private ImageView largeView;
     private Bitmap image;
     ArrayList<Item> data = new ArrayList<>();
+    private AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,11 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         largeView = findViewById(R.id.imageMain);
+        largeView.setBackgroundResource(R.drawable.anim_list);
+        animationDrawable = (AnimationDrawable) largeView.getBackground();
+        animationDrawable.start();
+
+
         TextView tag = findViewById(R.id.Tag);
         ListAdapter adapter = new ListAdapter(this,R.layout.list_item, data);
         ListView lv = findViewById(R.id.listview);
@@ -111,6 +118,8 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     public void startCamera(View view) {
+        animationDrawable.stop();
+        largeView.setBackgroundResource(R.color.white);
         Intent camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(camIntent, 1);
     }

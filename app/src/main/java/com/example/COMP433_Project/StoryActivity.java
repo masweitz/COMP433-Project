@@ -1,4 +1,4 @@
-package com.example.assignment5;
+package com.example.COMP433_Project;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,13 +28,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class StoryActivity extends AppCompatActivity {
 
+    TextToSpeech tts = null;
     String url = "https://api.textcortex.com/v1\n" +
             "/texts/social-media-posts";
-    String API_KEY = "gAAAAABnRd2DAFgbsG077CzqLuPt7nf3dOBcqyjhnGroG55X23qh70hr2a_08zFsHYYt2kdTZk3iP6m7z9DE2PFy6unsTc5RufCcv7WQj1FTK2NnMj2gevPsmgF2iL2Wipf0slxd9ST7";
+    String API_KEY = "gAAAAABnTgeTQZIthJZCQS3x5hHO5dAv9HRXX1FU0q1N7gK0FybQpDq8lBc8EllZ095kzsdORqM1aosOa8qi3j92h4RYU8RLac9oJpd2-pM693f1SJr6Di41RZPMZbhr5wQ0uPqJZJTZ";
     ArrayList<Item> data = new ArrayList<>();
 
     @Override
@@ -42,6 +45,7 @@ public class StoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_story);
 
         TextView selected = findViewById(R.id.tags_list);
+        TextView story = findViewById(R.id.story);
 
         CheckedListAdapter adapter = new CheckedListAdapter(this,R.layout.checkedlist_item, data, selected);
         ListView lv = findViewById(R.id.listview);
@@ -60,6 +64,7 @@ public class StoryActivity extends AppCompatActivity {
 
         Button back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(view -> {
+            tts.stop();
             Intent switchActivityIntent = new Intent(StoryActivity.this, MainActivity.class);
             startActivity(switchActivityIntent);
         });
@@ -137,7 +142,7 @@ public class StoryActivity extends AppCompatActivity {
                     args[i] = "%" + terms[i] + "%";
                 }
 
-                String query = "SELECT * FROM (SELECT * FROM DATA UNION ALL SELECT * FROM SKETCHDATA) WHERE " + whereClause.toString() + " ORDER BY DATE DESC";
+                String query = "SELECT * FROM DATA WHERE " + whereClause.toString() + " ORDER BY DATE DESC";
                 c = mydb.rawQuery(query, args);
             }
         }
@@ -158,12 +163,15 @@ public class StoryActivity extends AppCompatActivity {
         JSONObject data = new JSONObject();
 
         TextView selected = findViewById(R.id.tags_list);
-
         String keyString = selected.getText().toString();
-
         String[] keyArray = keyString.split("\\s*,\\s*");
-
         TextView story = findViewById(R.id.story);
+
+        tts = new TextToSpeech(this, status -> {
+            if(status != TextToSpeech.ERROR) {
+                tts.setLanguage(Locale.US);
+            }
+        });
 
         data.put("context", "Short Story");
         data.put("max_tokens", 100);
@@ -172,7 +180,11 @@ public class StoryActivity extends AppCompatActivity {
 
         data.put("keywords", new JSONArray(keyArray));
 
-        JsonObjectRequest request = new  JsonObjectRequest(Request.Method.POST, url, data, response -> story.setText(extractStory(response)), error -> Log.e("error", new String(error.networkResponse.data))){
+
+        JsonObjectRequest request = new  JsonObjectRequest(Request.Method.POST, url, data, response -> {
+            tts.speak(extractStory(response),TextToSpeech.QUEUE_FLUSH, null, null);
+            story.setText(extractStory(response));
+        }, error -> Log.e("error", new String(error.networkResponse.data))){
             @Override
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
@@ -184,6 +196,7 @@ public class StoryActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+
     }
 
     public static String extractStory(JSONObject jsonObject) {
